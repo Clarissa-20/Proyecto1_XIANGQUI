@@ -14,7 +14,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        Sistema sistemaPrincipal = new Sistema();
+        MenuInicio mi = new MenuInicio(sistemaPrincipal);
+        mi.setVisible(true);
     }
     
 }

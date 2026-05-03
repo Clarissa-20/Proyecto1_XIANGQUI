@@ -13,76 +13,69 @@ import java.time.LocalDate;
 public class Player {
     private String username;
     private String password;
-    private String nombre; //osea el nombre completo
     private int puntos;
-    private String[] logsPartidas;
-    private int contadorLogs;
+    private String[] logsPartidas; 
+    private int contadorLogs; 
     private boolean activo;
     private LocalDate fechaIngreso;
-    
-    public Player(String username, String password, String nombre){
+
+    public Player(String username, String password) {
         this.username = username;
         this.password = password;
-        this.nombre = nombre;
         this.puntos = 0;
-        this.logsPartidas = logsPartidas;
+        this.logsPartidas = new String[10];
         this.contadorLogs = 0;
         this.activo = true;
         this.fechaIngreso = LocalDate.now();
     }
-    
-    public void sumarVictoria(){
-        this.puntos+=3;
+
+    public String getUsername() {
+        return username;
     }
-    
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void agregarPuntos(int puntosGanados) {
+        this.puntos += puntosGanados;
+    }
+
     public void agregarLog(String mensaje){
         for(int i = Math.min(contadorLogs, 9); i>0; i--){
-            logsPartidas[i] = logsPartidas[i - 1];
+            logsPartidas[i] = logsPartidas[i-1];
         }
-        logsPartidas[0]=mensaje;
-        if(contadorLogs < 10){
+        logsPartidas[0] = mensaje;
+        if(contadorLogs<10){
             contadorLogs++;
         }
     }
-    
-    public String getUsername(){
-        return username;
-    }
-    
-    public void setUsername(String username){
-        this.username = username;
-    }
-    
-    public String getPassword(){
-        return password;
-    }
-    
-    public void setPassword(String password){
-        this.password = password;
-    }
-    
-    public String getNombre(){
-        return nombre;
-    }
-    
-    public int getPuntos(){
-        return puntos;
-    }
-    
-    public String[] getLogsPartidas(){
+
+    public String[] getLogsPartidas() {
         return logsPartidas;
     }
-    
-    public boolean isActivo(){
+
+    public boolean isActivo() {
         return activo;
     }
-    
-    public void setActivo(boolean activo){
+
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
-    public LocalDate getFechaIngreso(){
+
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
-    
 }
