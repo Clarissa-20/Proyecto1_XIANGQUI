@@ -18,7 +18,7 @@ public class MiPerfil extends JFrame{
         this.playerActual = playerActual;
         this.sistema = sistema;
         
-        setTitle("Xiangqui - Mi Cuenta");
+        setTitle("Xiangqi - Mi Cuenta");
         setSize(800, 550);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -29,17 +29,17 @@ public class MiPerfil extends JFrame{
     }
     
     private void initComponents(){
-        ClaseFondo cf = new ClaseFondo("/img/MiPerfilFondo.png");
+        ClaseFondo cf = new ClaseFondo("/img/miPerfil.png");
         cf.setLayout(new BorderLayout(20, 20));
         
         JLabel titulo = new JLabel("MI CUENTA", SwingConstants.CENTER);
-        titulo.setFont(new Font("Bodoni Bd BT", Font.BOLD, 40));
+        titulo.setFont(new Font("Bodoni Bd BT", Font.BOLD, 50));
         titulo.setForeground(new Color(255, 204, 51));
         titulo.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0));
         
         JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(4, 1, 15, 15));
-        panelBotones.setBorder(BorderFactory.createEmptyBorder(30, 200, 60, 200));
+        panelBotones.setLayout(new GridLayout(4, 1, 30, 30));
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(30, 250, 60, 250));
         panelBotones.setOpaque(false);
         
         JButton btnVerInfo = crearBoton("VER MIS DATOS");

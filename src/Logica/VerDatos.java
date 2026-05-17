@@ -20,13 +20,13 @@ public class VerDatos extends JFrame{
         this.playerActual = playerActual;
         this.sistema = sistema;
         
-        setTitle("Xiangqui - Información de la Cuenta - " + playerActual.getUsername());
+        setTitle("Xiangqi - Información de la Cuenta - " + playerActual.getUsername());
         setSize(800, 550);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        ClaseFondo cp = new ClaseFondo("/img/MiPerfilFondo.png");
+        ClaseFondo cp = new ClaseFondo("/img/miPerfil.png");
         cp.setLayout(new BorderLayout());
         cp.setBorder(BorderFactory.createEmptyBorder(90, 90, 90, 90));
 
@@ -34,7 +34,7 @@ public class VerDatos extends JFrame{
         panel.setOpaque(false);
         panel.setBorder(BorderFactory.createEmptyBorder(90, 90, 90, 90));
         panel.setBorder(BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(Color.BLACK, 5), "MI INFORMACIÓN",
+            BorderFactory.createLineBorder(Color.WHITE, 5), "MI INFORMACIÓN",
             TitledBorder.LEFT, TitledBorder.TOP, new Font("Bodoni Bd BT", Font.BOLD, 30), new Color(255, 204, 51)));
 
         JLabel nombre = new JLabel("USUARIO:");

@@ -16,13 +16,13 @@ public class LogIn extends JFrame{
     public LogIn(Sistema sistema){
         this.sistema = sistema;
         
-        setTitle("Xiangqui - LogIn");
+        setTitle("Xiangqi - LogIn");
         setSize(800, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(20, 20));
         
-        ClaseFondo cf = new ClaseFondo("/img/LogInFondo.png");
+        ClaseFondo cf = new ClaseFondo("/img/login.png");
         cf.setLayout(new BorderLayout(20, 20));
         
         JLabel titulo = new JLabel("INICIO SESIÓN", SwingConstants.CENTER);
@@ -33,7 +33,7 @@ public class LogIn extends JFrame{
         
         JPanel panel = new JPanel(new GridLayout(4, 1, 5, 5));
         panel.setOpaque(false);
-        panel.setBorder(BorderFactory.createEmptyBorder(15, 40, 15, 40));
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 200, 60, 200));
         
         JTextField txtUser = new JTextField(20);
         txtUser.setBackground(Color.BLACK);
@@ -51,7 +51,7 @@ public class LogIn extends JFrame{
         panel.add(txtPass);
         cf.add(panel, BorderLayout.CENTER);
         
-        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 30));
         panelBotones.setOpaque(false);
         cf.add(panelBotones, BorderLayout.SOUTH);
         
@@ -77,7 +77,7 @@ public class LogIn extends JFrame{
         btn.setBackground(Color.BLACK);
         btn.setForeground(Color.WHITE);
         btn.setFont(new Font("Bodoni Bd BT", Font.BOLD, 20));
-        btn.setPreferredSize(new Dimension(250, 50));
+        btn.setPreferredSize(new Dimension(180, 45));
         btn.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51), 5));
         return btn;
     }
@@ -87,12 +87,12 @@ public class LogIn extends JFrame{
         
         if (playerLogeado != null) {
             sistema.setPlayerActual(playerLogeado);
-            DecoMensajes.mostrarMensaje(this, "¡Bienvenido, " + user + "!", "XIANGQUI");
+            DecoMensajes.mostrarMensaje(this, "¡Bienvenido, " + user + "!", "XIANGQI");
             MenuPrincipal menuPrincipal = new MenuPrincipal(playerLogeado, sistema);
             menuPrincipal.setVisible(true);
             this.dispose();
         } else {
-            DecoMensajes.mostrarMensaje(this, "Usuario o contraseña incorrectos o no existe.", "XIANGQUI");
+            DecoMensajes.mostrarMensaje(this, "Usuario o contraseña incorrectos o no existe", "XIANGQI");
         }
     }
     

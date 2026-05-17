@@ -21,49 +21,67 @@ public class EliminarCuenta extends JFrame {
         this.playerActual = playerActual;
         this.sistema = sistema;
 
-        setTitle("Xiangqui - Eliminar Cuenta - " + playerActual.getUsername());
+        setTitle("Xiangqi - Eliminar Cuenta - " + playerActual.getUsername());
         setSize(800, 550);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        ClaseFondo cp = new ClaseFondo("/img/MiPerfilFondo.png");
+        ClaseFondo cp = new ClaseFondo("/img/miPerfil.png");
         cp.setLayout(new BorderLayout());
-        cp.setBorder(BorderFactory.createEmptyBorder(90, 90, 90, 90));
+        cp.setBorder(BorderFactory.createEmptyBorder(80, 150, 60, 150));
 
-        JPanel panel = new JPanel(new GridLayout(2, 2, 20, 50));
+        JPanel panel = new JPanel(new GridLayout(3, 1, 10, 15));
         panel.setOpaque(false);
         panel.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(Color.BLACK, 5), "ELIMINAR CUENTA",
+                BorderFactory.createLineBorder(Color.WHITE, 5), "ELIMINAR CUENTA",
                 TitledBorder.LEFT, TitledBorder.TOP, new Font("Bodoni Bd BT", Font.BOLD, 30), new Color(255, 204, 51)));
 
-        txtConfirmarPassword = new JPasswordField(5);
+        JLabel lblConfirmar = crearLabel("CONFIRMAR CONTRASEÑA:");
+        lblConfirmar.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(lblConfirmar);
+
+        txtConfirmarPassword = new JPasswordField();
+        txtConfirmarPassword.setBackground(Color.BLACK);
+        txtConfirmarPassword.setForeground(Color.WHITE);
+        txtConfirmarPassword.setCaretColor(Color.WHITE);
+        txtConfirmarPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+        txtConfirmarPassword.setPreferredSize(new Dimension(250, 40));
+        
+        JPanel panelCampo = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelCampo.setOpaque(false);
+        panelCampo.add(txtConfirmarPassword);
+        panel.add(panelCampo);
+
         JButton btnEliminar = new JButton("ELIMINAR CUENTA");
         btnEliminar.setBackground(Color.BLACK);
         btnEliminar.setForeground(Color.WHITE);
-        btnEliminar.setFont(new Font("Bodoni Bd BT", Font.BOLD, 20));
+        btnEliminar.setFont(new Font("Bodoni Bd BT", Font.BOLD, 18));
         btnEliminar.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51), 5));
+        btnEliminar.setFocusPainted(false);
+        btnEliminar.setPreferredSize(new Dimension(220, 45));
 
-        panel.add(crearLabel("CONFIRMAR CONTRASEÑA:"));
-        panel.add(txtConfirmarPassword);
-        panel.add(new JLabel(""));
-        panel.add(btnEliminar);
+        JPanel panelBotonEliminar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelBotonEliminar.setOpaque(false);
+        panelBotonEliminar.add(btnEliminar);
+        panel.add(panelBotonEliminar);
 
         btnEliminar.addActionListener(e -> manejarEliminarCuenta());
 
         JButton btnVolver = new JButton("VOLVER");
-        btnVolver.setFont(new Font("Bodoni Bd BT", Font.BOLD, 20));
+        btnVolver.setFont(new Font("Bodoni Bd BT", Font.BOLD, 22));
         btnVolver.setForeground(Color.WHITE);
         btnVolver.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51), 5));
         btnVolver.setBackground(Color.BLACK);
-        btnVolver.setPreferredSize(new Dimension(250, 50));
+        btnVolver.setFocusPainted(false);
+        btnVolver.setPreferredSize(new Dimension(180, 45)); 
         btnVolver.addActionListener(e -> vtnVolver());
 
-        JPanel panelbtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        JPanel panelbtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 15));
         panelbtn.setOpaque(false);
         panelbtn.add(btnVolver);
+        
         cp.add(panelbtn, BorderLayout.SOUTH);
-
         cp.add(panel, BorderLayout.CENTER);
         this.setContentPane(cp);
     }
@@ -79,24 +97,24 @@ public class EliminarCuenta extends JFrame {
         String confirmarPassword = new String(txtConfirmarPassword.getPassword());
 
         if (confirmarPassword.isEmpty()) {
-            DecoMensajes.mostrarMensaje(this, "Por favor, ingrese su contraseña.", "BATTLESHIP");
+            DecoMensajes.mostrarMensaje(this, "Por favor, ingrese su contraseña.", "XIANGQI");
             return;
         }
 
         int confirmar = JOptionPane.showConfirmDialog(this,
-                "¿Está seguro que desea eliminar su cuenta? Esta acción es irreversible.",
+                "¿Esta seguro que desea eliminar su cuenta?",
                 "Confirmar Eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (confirmar == JOptionPane.YES_OPTION) {
             boolean exito = sistema.eliminarCuenta(playerActual.getUsername(), confirmarPassword);
 
             if (exito) {
-                DecoMensajes.mostrarMensaje(this, "Cuenta eliminada con éxito.", "BATTLESHIP");
+                DecoMensajes.mostrarMensaje(this, "Cuenta eliminada con exito.", "XIANGQI");
                 MenuInicio mi = new MenuInicio(sistema);
                 mi.setVisible(true);
                 this.dispose();
             } else {
-                DecoMensajes.mostrarMensaje(this, "Contraseña incorrecta. No se pudo eliminar la cuenta.", "BATTLESHIP");
+                DecoMensajes.mostrarMensaje(this, "Contraseña incorrecta. No se pudo eliminar la cuenta.", "XIANGQI");
                 txtConfirmarPassword.setText("");
             }
         }
@@ -107,5 +125,4 @@ public class EliminarCuenta extends JFrame {
         mp.setVisible(true);
         this.dispose();
     }
-
 }

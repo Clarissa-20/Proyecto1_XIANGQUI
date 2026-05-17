@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author HP
  */
-public class SelecRival extends JFrame{
+public class SelecRival extends JFrame {
     private JTextField nombreOponenteField;
     private Player jugadorPrincipal;
     private Sistema sistema;
@@ -21,18 +21,18 @@ public class SelecRival extends JFrame{
         this.jugadorPrincipal = jugadorPrincipal;
         this.sistema = sistema;
 
-        setTitle("Xiangqui - Seleccionar Rival");
-        setSize(600, 500);
+        setTitle("Xiangqi - Seleccionar Rival");
+        setSize(600, 560);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        ClaseFondo cf = new ClaseFondo("/img/RivalFondo.png");
+        ClaseFondo cf = new ClaseFondo("/img/selecRival.png");
         cf.setLayout(new BorderLayout(10, 10));
-        cf.setBorder(BorderFactory.createEmptyBorder(60, 90, 90, 90));
+        cf.setBorder(BorderFactory.createEmptyBorder(40, 90, 40, 90));
 
         JLabel titulo = new JLabel("SELECCIONA TU RIVAL", SwingConstants.CENTER);
         titulo.setFont(new Font("Bodoni Bd BT", Font.BOLD, 30));
-        titulo.setBorder(BorderFactory.createEmptyBorder(50, 0, 10, 0));
+        titulo.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
         titulo.setForeground(new Color(255, 204, 51));
         cf.add(titulo, BorderLayout.NORTH);
 
@@ -43,10 +43,11 @@ public class SelecRival extends JFrame{
     private JPanel getPanelCentral() {
         JPanel panelCentral = new JPanel(new BorderLayout(10, 10));
         panelCentral.setOpaque(false);
+        
         JPanel panelInput = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         panelInput.setOpaque(false);
 
-        JLabel label = new JLabel("Rival (o escribe 'EXIT'):");
+        JLabel label = new JLabel("Tu Rival:");
         label.setFont(new Font("Bodoni Bd BT", Font.BOLD, 18));
         label.setForeground(Color.WHITE);
 
@@ -62,10 +63,26 @@ public class SelecRival extends JFrame{
         scroll.setBorder(BorderFactory.createTitledBorder("JUGADORES REGISTRADOS"));
 
         JButton btnAceptar = estiloBoton("Comenzar Partida");
+        JButton btnVolver = estiloBoton("Volver al Menu");
+
+        JPanel contenedorBotonesEstructura = new JPanel();
+        contenedorBotonesEstructura.setLayout(new BoxLayout(contenedorBotonesEstructura, BoxLayout.Y_AXIS));
+        contenedorBotonesEstructura.setOpaque(false);
+        
+        btnAceptar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnVolver.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        contenedorBotonesEstructura.add(btnAceptar);
+        contenedorBotonesEstructura.add(Box.createVerticalStrut(12)); // Espaciado entre botones
+        contenedorBotonesEstructura.add(btnVolver);
+
+        JPanel panelSurBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelSurBotones.setOpaque(false);
+        panelSurBotones.add(contenedorBotonesEstructura);
 
         panelCentral.add(panelInput, BorderLayout.NORTH);
         panelCentral.add(scroll, BorderLayout.CENTER);
-        panelCentral.add(btnAceptar, BorderLayout.SOUTH);
+        panelCentral.add(panelSurBotones, BorderLayout.SOUTH); 
 
         listaOponentes.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
@@ -76,6 +93,11 @@ public class SelecRival extends JFrame{
         });
 
         btnAceptar.addActionListener(e -> validarYArrancar());
+        
+        btnVolver.addActionListener(e -> {
+            new MenuPrincipal(jugadorPrincipal, sistema).setVisible(true);
+            this.dispose();
+        });
 
         return panelCentral;
     }
@@ -97,19 +119,13 @@ public class SelecRival extends JFrame{
     private void validarYArrancar() {
         String oponente = nombreOponenteField.getText().trim();
 
-        if (oponente.equalsIgnoreCase("EXIT")) {
-            new MenuPrincipal(jugadorPrincipal, sistema).setVisible(true);
-            this.dispose();
-            return;
-        }
-
         if (oponente.isEmpty()) {
-            DecoMensajes.mostrarMensaje(this, "Debe ingresar un nombre o EXIT.", "XIANGQUI");
+            DecoMensajes.mostrarMensaje(this, "Debe ingresar o seleccionar un nombre.", "XIANGQI");
             return;
         }
 
         if (oponente.equals(jugadorPrincipal.getUsername())) {
-            DecoMensajes.mostrarMensaje(this, "¡No puedes ser tu propio rival!", "XIANGQUI");
+            DecoMensajes.mostrarMensaje(this, "¡No puedes ser tu propio rival!", "XIANGQI");
             return;
         }
 
@@ -117,21 +133,25 @@ public class SelecRival extends JFrame{
         if (encontrado != null) {
             sistema.setPlayerActual(this.jugadorPrincipal);
             sistema.setRival(encontrado);
-            //sistema.limpiarTableros(); CREO QUE ESTO NO VA YA QUE ERA DE MI PROYECTO ANTERIOR
 
             Juego jg = new Juego(sistema);
             jg.setVisible(true);
             this.dispose();
         } else {
-            DecoMensajes.mostrarMensaje(this, "Jugador no encontrado. Vuelvea intentarlo.", "XIANGQUI");
+            DecoMensajes.mostrarMensaje(this, "Jugador no encontrado. Vuelve a intentarlo.", "XIANGQI");
         }
     }
 
     private JButton estiloBoton(String t) {
         JButton b = new JButton(t);
         b.setBackground(Color.BLACK);
-        b.setForeground(new Color(255, 204, 51));
-        b.setFont(new Font("Bodoni Bd BT", Font.BOLD, 20));
+        b.setForeground(Color.WHITE);
+        b.setFont(new Font("Bodoni Bd BT", Font.BOLD, 18));
+        b.setFocusPainted(false);
+        b.setPreferredSize(new Dimension(220, 45));
+        b.setMaximumSize(new Dimension(220, 45));
+        b.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51), 5));
+        
         return b;
     }
 }

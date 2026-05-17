@@ -19,17 +19,12 @@ public class Reportes extends JFrame {
         this.playerActual = playerActual;
         this.sistema = sistema;
 
-        if (this.sistema == null) {
-            JOptionPane.showMessageDialog(null, "Error crítico: El sistema no nulo.");
-            return;
-        }
-
-        setTitle("Xiangqui - Reportes");
-        setSize(900, 800);
+        setTitle("Xiangqi - Reportes");
+        setSize(800, 700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        ClaseFondo cf = new ClaseFondo("/img/ReportesFondo.png");
+        ClaseFondo cf = new ClaseFondo("/img/reportes.png");
         cf.setLayout(new BorderLayout(20, 20));
 
         JLabel titulo = new JLabel("REPORTES", SwingConstants.CENTER);
@@ -93,7 +88,7 @@ public class Reportes extends JFrame {
         }
 
         if (sb.length() == 0) {
-            return "No hay partidas registradas.";
+            return "No hay partidas registradas";
         }
         return sb.toString();
     }

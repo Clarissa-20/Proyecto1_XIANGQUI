@@ -23,12 +23,12 @@ public class CrearPlayer extends JFrame {
     public CrearPlayer(Sistema sistema) {
         this.sistema = sistema;
 
-        setTitle("Xiangqui - Crear Player");
-        setSize(800, 650);
+        setTitle("Xiangqi - Crear Player");
+        setSize(800, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        ClaseFondo cf = new ClaseFondo("/img/CrearPlayerFondo.png");
+        ClaseFondo cf = new ClaseFondo("/img/crearPlayer.png");
         cf.setLayout(new BorderLayout());
 
         JLabel titulo = new JLabel("CREAR PLAYER", SwingConstants.CENTER);
@@ -44,7 +44,7 @@ public class CrearPlayer extends JFrame {
         formulario.setLayout(new BoxLayout(formulario, BoxLayout.Y_AXIS));
         formulario.setOpaque(false);
 
-        formulario.add(estiloEtiqueta("Usuario (único):"));
+        formulario.add(estiloEtiqueta("Usuario (unico):"));
         txtUser = new JTextField();
         estiloCampoTexto(txtUser);
         formulario.add(txtUser);
@@ -66,11 +66,11 @@ public class CrearPlayer extends JFrame {
                 BorderFactory.createEmptyBorder(8, 15, 8, 15)
         ));
 
-        reqLongitud = estiloReq("- Mínimo 5 caracteres");
-        reqMayus = estiloReq("- Al menos una mayúscula");
-        reqMinus = estiloReq("- Al menos una minúscula");
+        reqLongitud = estiloReq("- Minimo 5 caracteres");
+        reqMayus = estiloReq("- Al menos una mayuscula");
+        reqMinus = estiloReq("- Al menos una minuscula");
         reqNumero = estiloReq("- Al menos un número");
-        reqEspecial = estiloReq("- Un carácter especial");
+        reqEspecial = estiloReq("- Un caracter especial");
 
         panelCajita.add(reqLongitud);
         panelCajita.add(reqMayus);

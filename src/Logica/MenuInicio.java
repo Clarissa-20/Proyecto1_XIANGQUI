@@ -17,24 +17,24 @@ public class MenuInicio extends JFrame {
     public MenuInicio(Sistema sistema){
         this.sistema = sistema;
         
-        setTitle("Xiangqui - Menú Inicio");
+        setTitle("Xiangqi - Menu Inicio");
         setSize(800, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(20, 20));
 
-        ClaseFondo cf = new ClaseFondo("/img/MenuInicioFondo.png");
+        ClaseFondo cf = new ClaseFondo("/img/menuInicio.png");
         cf.setLayout(new BorderLayout(20, 20));
 
-        JLabel titulo = new JLabel("XIANGQUI", SwingConstants.CENTER);
-        titulo.setFont(new Font("Bodoni Bd BT", Font.BOLD, 50));
+        JLabel titulo = new JLabel("XIANGQI", SwingConstants.CENTER);
+        titulo.setFont(new Font("Bodoni Bd BT", Font.BOLD, 80));
         titulo.setForeground(new Color(255, 204, 51));
         titulo.setBorder(BorderFactory.createEmptyBorder(30, 0, 10, 0));
         cf.add(titulo, BorderLayout.NORTH);
 
         JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(4, 1, 15, 15));
-        panelBotones.setBorder(BorderFactory.createEmptyBorder(30, 200, 60, 200));
+        panelBotones.setLayout(new GridLayout(4, 1, 30, 30));
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(30, 270, 60, 270));
         panelBotones.setOpaque(false);
 
         JButton btnLogIn = estiloBotones("LOGIN");

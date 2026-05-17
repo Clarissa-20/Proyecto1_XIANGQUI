@@ -62,6 +62,10 @@ public class Player {
             contadorLogs++;
         }
     }
+    
+    public void agregarLog(LogPartida objetoLog) {
+        agregarLog(objetoLog.formatearTexto());
+    }
 
     public String[] getLogsPartidas() {
         return logsPartidas;

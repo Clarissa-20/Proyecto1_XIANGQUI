@@ -19,15 +19,14 @@ public class MenuPrincipal extends JFrame {
     public MenuPrincipal(Player playerActual, Sistema sistema) {
         this.playerActual = playerActual;
         this.sistema = sistema;
-        System.out.println("DEBUG MenuPrincipal: sistema guardado correctamente: " + this.sistema);
         
-        setTitle("Xiangqui - Menu Principal");
+        setTitle("Xiangqi - Menu Principal");
         setSize(800, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        ClaseFondo cf = new ClaseFondo("/img/MenuPrincipalFondo.png");
+        ClaseFondo cf = new ClaseFondo("/img/menuPrincipal.png");
         cf.setLayout(new BorderLayout(20, 20));
 
         JLabel titulo = new JLabel("¡Bienvenido, " + playerActual.getUsername() + "!", SwingConstants.CENTER);
@@ -40,7 +39,7 @@ public class MenuPrincipal extends JFrame {
         panelBotones.setBorder(BorderFactory.createEmptyBorder(20, 230, 60, 230));
         panelBotones.setOpaque(false);
 
-        JButton btnJugar = estiloBotones("JUGAR BATTLESHIP");
+        JButton btnJugar = estiloBotones("JUGAR XIANGQI");
         JButton btnMiPerfil = estiloBotones("MI PERFIL");
         JButton btnReportes = estiloBotones("REPORTES");
         JButton btnSalir = estiloBotones("SALIR");
@@ -79,7 +78,7 @@ public class MenuPrincipal extends JFrame {
             new SelecRival(playerActual, sistema).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,
-                    "Se necesitan al menos dos jugadores registrados para jugar.",
+                    "Se necesitan al menos dos jugadores registrados para jugar",
                     "Faltan Oponentes",
                     JOptionPane.WARNING_MESSAGE);
         }

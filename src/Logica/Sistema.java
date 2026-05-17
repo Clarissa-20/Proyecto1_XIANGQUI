@@ -11,7 +11,7 @@ import java.util.Comparator;
  *
  * @author HP
  */
-public class Sistema {
+public class Sistema implements AlmacenamientoDatos{
 
     private Player[] listaPlayers;
     private int contadorPlayers;
